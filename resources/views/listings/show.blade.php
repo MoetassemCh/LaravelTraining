@@ -1,5 +1,7 @@
-@extends('layout')
-@section('content')
+{{-- @extends('layout')
+@section('content') --}}
+<x-layout>
+
 @include('partials._search')
    <a href="/" class="inline-block text-black ml-4 mb-4"
                 ><i class="fa-solid fa-arrow-left"></i> Back
@@ -11,34 +13,13 @@
                     >
                         <img
                             class="w-48 mr-6 mb-6"
-                            src="{{asset('images/no-image.png')}}"
+                            src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}"
                             alt=""
                         />
 
                         <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
                         <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
-                        <ul class="flex">
-                            <li
-                                class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                            >
-                                <a href="#">Laravel</a>
-                            </li>
-                            <li
-                                class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                            >
-                                <a href="#">API</a>
-                            </li>
-                            <li
-                                class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                            >
-                                <a href="#">Backend</a>
-                            </li>
-                            <li
-                                class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                            >
-                                <a href="#">Vue</a>
-                            </li>
-                        </ul>
+                         <x-listing-tags :tagsCsv="$listing->tags" />
                         <div class="text-lg my-4">
                             <i class="fa-solid fa-location-dot"></i> {{$listing->location}}
                         </div>
@@ -68,5 +49,21 @@
                         </div>
                     </div>
                 </x-card>
+                {{-- <x-card class="mt-4 p-2 flex space-x-6">
+                <a href="/listings/{{$listing->id}}/edit" class="inline-block text-black ml-4 mb-4">
+                <i class="fa-solid fa-pencil">
+
+                </i>Edit
+                </a>
+                <form action="/listings/{{$listing->id}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="text-red-500">
+                <i class="fa-solid fa-trash"></i>
+                Delete
+                </button>
+                </form>
+                </x-card> --}}
             </div>
-@endsection
+{{-- @endsection --}}
+</x-layout>

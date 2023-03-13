@@ -1,6 +1,7 @@
-@extends('layout')
+{{-- @extends('layout')
 
-@section('content')
+@section('content') --}}
+<x-layout>
 @include('partials._hero')
 @include('partials._search')
  <div class="bg-gray-50 border border-gray-200 rounded p-6">
@@ -12,4 +13,8 @@
         <p>No listings found</p>
     @endunless
 </div>
-@endsection
+<div class="mt-6 p-4">
+    {{$listings->links()}}
+</div>
+</x-layout>
+{{-- @endsection --}}
